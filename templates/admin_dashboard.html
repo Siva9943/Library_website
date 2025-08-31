@@ -1,0 +1,59 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin_Dashboard</title>
+    <link rel="stylesheet" href="{% static 'admin_dash.css'%}">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="profile">
+        <img src="{% static 'img/admin.png'%}" alt="Profile Image">  
+        <span>Hii..! {{ user.username }}</span> 
+        <div class="form">
+            <form action = "{% url 'takebook' %}" method="post">
+                {% csrf_token %}
+                <input type="text" name="search" placeholder="Enter BookName" id="inp">
+                <input type="number" name="searchcode" placeholder="Enter Book Code" id="inp">
+                <button type="submit" class="search">Search</button>
+            </form>
+        </div>
+    </div>
+    <div class="right"> <button class="abc add"><a href="{% url 'addbook' %}">Add Book</a></button> &nbsp; <button class="abc log"><a href="{% url 'log_out' %}">Log Out</a></button></div>
+</div>
+<h2>Book Details-Admin Page</h2>
+
+<table>
+    <tr>
+        <th>Book Name</th>
+        <th>Book Code</th>
+        <th>Author Name</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Amount</th>
+        <th>Available Books</th>
+        <th>Book Image</th>
+        <th>Action</th>
+        <th>Delete</th>
+
+    </tr>
+    {% for i in obj %}
+    <tr>
+        <td>{{i.name}}</td>
+        <td>{{i.book_code}}</td>
+        <td>{{i.author_name}}</td>
+        <td>{{i.date}}</td>
+        <td>{{i.status}}</td>
+        <td>{{i.amount}}</td>
+        <td>{{i.available_books}}</td>
+        <td><img src="{{i.book_img.url}}" style="width:100px;height:100px;"></td>
+        <td><button class="btn1"><a class="edit" href="{% url 'updatebook' i.id %}">Edit </a> </button></td>
+        <td><button class="btn2"><a class="delete" href="{% url 'deletebook' i.id %}">Delete </a> </button></td> 
+      
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

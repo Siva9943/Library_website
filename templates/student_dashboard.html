@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student_Dashboard</title>
+    <link rel="stylesheet" href="{% static 'student_dash.css'%}">
+   </head>
+<body>
+    <div class="navbar">
+        <div class="profile">
+            <img src="{% static 'img/student.png'%}" alt="Profile Image">  
+            <span>{{ user.username }}</span> 
+            <hr><hr> 
+            <div class="form">
+                <form action = "{% url 'takebook' %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="search" placeholder="Enter BookName" id="inp">
+                    <input type="number" name="searchcode" placeholder="Enter Book Code" id="inp">
+                    <button type="submit" class="search">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="right">&nbsp; <button class="abc"><a href="{% url 'log_out' %}">Log Out</a></button></div>
+        
+        
+    </div>
+</body>
+</html>

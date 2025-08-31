@@ -1,0 +1,94 @@
+        body {
+            background-color: whitesmoke;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(180, 104, 176, 0.1); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+
+        }
+
+        .navbar .profile {
+            display: flex;
+            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .navbar .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 25px;
+        }
+
+        .navbar .profile span {
+            font-size: 18px;
+        } 
+        .abc{
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            border: 2px solid rgb(40, 218, 40);
+            cursor: pointer;
+        } 
+        button {
+            transition: all 0.3s ease-in-out; 
+        }
+
+        .abc:active {
+            transform: scale(1.2);
+        }
+        .abc a{
+            text-decoration: none;
+        }
+        table{width:100%;}
+        body{
+        background-color:yellowgreen;
+        }
+        table, th, td, tr {
+            border: 1px solid black;
+
+        }
+        td,th {
+            padding:20px;
+            text-align:center;
+        }
+        button{
+            background-color:blue;
+            padding:10px;
+            border-radius:3px;
+        }
+        a{
+            color:white;
+            text-decoration:none;
+        }
+        .edit{
+            color:white;
+        }
+        .edit:hover {
+            color:red;
+            text-decoration: underline;
+
+        }
+        .btn2{
+            margin-top:20px;
+            width:80px;
+        }
+       
+        .lg{
+            position: absolute;
+            right: 20px;
+            top:10px;
+        }
+        h2{
+            text-align: center;
+        }

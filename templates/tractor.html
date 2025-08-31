@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tractor Ploughing Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Turf.js for area calculations -->
+  <script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f0f8ff;
+    }
+    header {
+      background: #006400;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.4rem;
+    }
+    #map {
+      height: 500px;
+      width: 100%;
+    }
+    .info-panel {
+      padding: 1rem;
+      background-color: #fff;
+      box-shadow: 0 0 10px #ccc;
+      margin: 1rem;
+      border-radius: 8px;
+    }
+    .info-panel h2 {
+      margin: 0 0 1rem 0;
+      font-size: 1.2rem;
+    }
+    .info {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header>🚜 Real-Time Tractor Ploughing Tracker</header>
+
+<div id="map"></div>
+
+<div class="info-panel">
+  <h2>Status</h2>
+  <div class="info" id="speed">Speed: -- km/h</div>
+  <div class="info" id="area">Area: -- acres</div>
+  <button onclick="resetTracking()">🔁 Reset Tracking</button>
+</div>
+
+<script>
+  const map = L.map('map').setView([20.59, 78.96], 5); // India center
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  let path = [];
+  let polyline = L.polyline([], { color: 'blue' }).addTo(map);
+
+  function updateArea() {
+    if (path.length < 3) return 0;
+
+    let turfPoints = path.map(p => [p[1], p[0]]);
+    turfPoints.push(turfPoints[0]); // Close the polygon
+
+    const polygon = turf.polygon([turfPoints]);
+    const areaMeters = turf.area(polygon);
+    const areaAcres = areaMeters / 4046.86;
+    document.getElementById("area").innerText = "Area: " + areaAcres.toFixed(2) + " acres";
+  }
+
+  function updateSpeed(speedMps) {
+    const speedKmph = speedMps * 3.6;
+    document.getElementById("speed").innerText = "Speed: " + speedKmph.toFixed(2) + " km/h";
+  }
+
+  navigator.geolocation.watchPosition(
+    (pos) => {
+      const lat = pos.coords.latitude;
+      const lng = pos.coords.longitude;
+      const speed = pos.coords.speed || 0;
+
+      path.push([lat, lng]);
+      polyline.setLatLngs(path);
+
+      map.setView([lat, lng], 17);
+      updateSpeed(speed);
+      updateArea();
+
+      // Optional: send to Django backend
+      /*
+      fetch('/save_gps/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({ lat, lng, speed })
+      });
+      */
+    },
+    (err) => alert("Geolocation error: " + err.message),
+    { enableHighAccuracy: true }
+  );
+
+  function resetTracking() {
+    path = [];
+    polyline.setLatLngs([]);
+    document.getElementById("area").innerText = "Area: -- acres";
+    document.getElementById("speed").innerText = "Speed: -- km/h";
+  }
+</script>
+
+</body>
+</html>

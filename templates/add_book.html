@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin_book add</title>
+    
+</head>
+<body>
+    <form method="post" action="{% url 'addbook'%}"  enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="Bookname">Book Name</label>
+        <input type="text" placeholder="Enter Book Name" required name="Name">
+        <label for="bcode">Book Code</label>
+        <input type="text" placeholder="Enter book code" required name="Code">
+        <label for="Author">Author Name</label>
+        <input type="text" placeholder="Enter Author name" required name="Author">
+        <label for="Date">Date</label>
+        <input type="date" placeholder="Date" required name="Date">
+        <label for="status">Status</label>
+        <input type="text" placeholder="Status of the Book" required name="Status">
+        <label for="available_books">Available Stock</label>
+        <input type="number" placeholder="Enter the no.of Stock" required name="available_books">
+        <label for="amount">Fix Amount per/Book</label>
+        <input type="number" placeholder="Enter Book Amount" required name="Amount">
+
+        <label for="Image">Add-Image</label>
+        <input type="file" required name="files">
+
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+</body>
+</html>

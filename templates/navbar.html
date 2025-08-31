@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'navbar.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Navbar</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{% static 'img/student.gif'%}" alt="book logo" class="logo_img">
+            <h3>Library</h3>
+
+            <ul class="nav-links">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="#">Books</a></li>
+                <li><a href="#">Membership</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        
+       
+
+
+        <div class="auth-buttons">
+            <a href="{% url 'login_details' %}" ><button class="login-btn">Login</button> </a>
+            <a href="{% url 'studentsignup' %}"><button class="register-btn">Register</button> </a>
+        </div>
+    </nav>
+
+</body>
+</html>
+
+<!-- <head>
+    <link rel="stylesheet" href="{% static 'nav.css'%}">
+    <link rel="stylesheet" href="{%static 'main.css'%}">
+</head>
+<body>
+    <nav>
+        <div class="left">
+            <h2>Library</h2>
+        </div>
+        <div class="right">
+            <a href="/s_login"><button class="st">Student_login</button></a>
+            
+            <button>Admin_login</button>
+        </div>
+    </nav>
+</body> -->

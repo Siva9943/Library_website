@@ -1,0 +1,46 @@
+{% load static %}
+{% include 'navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Signup</title>
+    <link rel="stylesheet" href="{% static 'student_signup.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div>
+            <img src="{%static 'img/s_back.jpg'%}" alt="back">
+        </div>
+        <div class="library-signup-container">
+            <h2>Student_Signup</h2><br><br>
+            <form method="POST" action="{% url 'studentsignup' %}">
+                {% csrf_token %}
+                
+                <label>User Name</label>
+                <input type="text" name="username" placeholder="Enter your username" class="library-input" required>
+    
+                <label>Email ID</label>
+                <input type="email" name="email" placeholder="Enter your email" class="library-input" required>
+    
+                <label>Password</label>
+                <input type="password" name="password1" placeholder="Enter password" class="library-input" required>
+    
+                <label>Confirm Password</label>
+                <input type="password" name="password2" placeholder="Confirm password" class="library-input" required>
+                <!-- <label for="image">Upload Student-image</label>
+                <input type="file" name="student_image"> -->
+                <p>By signing up, you agree to our <a href="#">Terms</a>,<a href="#">Privacy Policy</a> and <a href="#">Cookies</a> Policy .
+    
+                </p>
+    
+                <button type="submit" class="library-btn">Sign Up</button>
+                <button type="reset" class="library-btn library-reset-btn">Reset</button>
+            </form>
+        </div>
+    </div>
+    
+
+</body>
+</html>

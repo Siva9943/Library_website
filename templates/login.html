@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'student_login1.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <title>Library Login Form</title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    
+    <div class="container">
+        <img src="{% static 'img/login.png' %}" alt="login">
+        <div class="left">
+            <form method="POST" action="{% url 'login_details' %}">
+                {% csrf_token %}
+                <h2>&nbsp;&nbsp;&nbsp;&nbsp;User Login Form&nbsp;&nbsp;</h2><br>
+                
+                <label for="Name">User Name</label><br/><br/>
+                <div class="input">
+                    <i class="fa-solid fa-circle-user user"></i>
+                    <input type="text" placeholder="User Name" name="Name" id="Name" required> 
+                </div>
+                <br><br>
+                
+                <label for="Password">Password</label><br/><br/>
+                <div class="input">
+                    <i class="fa-solid fa-key user"></i>
+                    <input type="password" placeholder="Enter Password" name="Password" id="Password" required>
+                </div>
+                <br><br>
+
+                <div class="other">
+                    <button type="submit">Login</button><br><br>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

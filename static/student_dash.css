@@ -1,0 +1,93 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    background: rgba(180, 104, 176, 0.1); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    position: fixed;
+    top:0;
+    left: 0;
+
+}
+
+.navbar .profile {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+.navbar .profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 25px;
+}
+
+.navbar .profile span {
+    font-size: 18px;
+} 
+.profile span {
+    margin-right: 40px;
+}
+
+.abc{
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: black;
+    color:white;
+    cursor: pointer;
+} 
+button {
+    transition: all 0.3s ease-in-out; 
+}
+
+.abc:active {
+    transform: scale(1.2);
+}
+.abc a{
+    text-decoration: none;
+}
+.right{
+   margin-top: 10px;
+}
+form {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+#inp {
+padding: 8px;
+width: 250px;
+height: 35px;
+border: 1px solid #ccc;
+border-radius: 5px;
+position: relative;
+outline: none;
+}
+.search {
+padding: 9px 15px;
+background-color: blue;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+
+}
+.search:hover {
+background-color: darkblue;
+}

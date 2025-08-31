@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'index.css'%}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library management system</title>
+</head>
+<body>
+    <div class="container">
+        {% include 'navbar.html'%}
+        <br><br>
+        <div class="marquee-container">
+              <marquee behavior="scroll" direction="left" scroll-amount="50">📚 Welcome to Library | 📖 New Arrivals Available! | 📅 Upcoming Event: Book Reading on March 20 | 🔍 Search Books Online | 🎓 Free Study Resources Available!</marquee>  
+        </div>
+        <br><br>
+        <div class="content">
+            <div class="left">
+                <h1>"A reader lives a thousand lives before he dies. The man who never reads lives only one." – George R.R. Martin</h1><br><br>
+                <p> &nbsp;&nbsp;&nbsp; &nbsp;Discover a world of knowledge, imagination, and learning at Library. Explore our vast collection of books, e-books, research materials, and digital resources. Whether you're here to study, research, or simply enjoy a good book, our library is your gateway to endless possibilities.</p>
+            </div>
+            <div class="right">
+                <section>
+                    <div>
+                        <img id="book-image" src="{% static 'img/book1.png' %}" alt="Featured Book"
+                             data-images='[
+                                 "{% static 'img/book1.png' %}",
+                                 "{% static 'img/book2.png' %}",
+                                 "{% static 'img/book3.jpg' %}",
+                                 "{% static 'img/book4.jpg' %}",
+                                 "{% static 'img/book5.png' %}"
+                             ]'>
+                            </div>
+        </div>
+        
+         </div>
+    </div>
+    <div class="about">
+        <div class="about_info">
+            <h1>About Us </h1>
+            
+            <p><i class="fa fa-star" aria-hidden="true"></i> &nbsp;&nbsp;Central Library occupies a place of pride in IIT Bombay and is an essential component of the institute’s outstanding research and education mission. </p>
+            <p><i class="fa fa-star" aria-hidden="true"></i>&nbsp;&nbsp;It is a most lively place on the campus providing a safe, comfortable and friendly environment that enables learning and advancement of knowledge, and promotes discovery and scholarship. The mission of the Central Library is to facilitate creation of new knowledge through acquisition, organization and dissemination of knowledge resources and providing for value added services.</p>
+        </div>
+        <div class="form">
+            <h2>Library Feedback Form</h2><br><br>
+            <form action="#" method="POST">
+
+                <label for="name">Name:</label>
+                <input type="text" name="name" required placeholder="Enter Your Name ">
+                
+                <label for="email">Email:</label>
+                <input type="email" name="email" placeholder="Optional" >
+                
+                <label for="message">Feedback:</label>
+                <textarea name="message" rows="4" required placeholder="Share Your Valuable feedback"></textarea>
+                
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </div>
+       
+    </div>
+    <footer class="footer">
+        <p>Library &copy; 2025 | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const bookImageElement = document.getElementById("book-image");
+    const bookImages = JSON.parse(bookImageElement.getAttribute("data-images"));
+
+    let bookIndex = 0;
+
+    function changeBookImage() {
+        bookImageElement.style.opacity = 0; 
+        setTimeout(() => {
+            bookImageElement.src = bookImages[bookIndex];
+            bookImageElement.style.opacity = 1; 
+            bookIndex = (bookIndex + 1) % bookImages.length;
+        }, 400);
+    }
+
+    setInterval(changeBookImage, 3000); 
+    changeBookImage(); 
+});
+
+    </script>
+</body>
+</html>

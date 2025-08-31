@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Book</title>
+    <style>
+        html, body {
+            background-image: url("{% static 'img/background.png'%}");
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+            color: black;
+            font-family: Arial, sans-serif;
+        }
+        form {
+            background: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            padding: 10px;
+            width: 300px;
+            border: none;  
+            outline: none; 
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            display: block;
+            margin-top: 5px;
+        }
+        button {
+            width: 100px;
+            height: 40px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button[type="submit"] {
+            background-color: #28a745;
+            color: white;
+        }
+        button[type="reset"] {
+            background-color: #dc3545;
+            color: white;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" name="updatebook" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="Bookname">Book Name</label>
+        <input type="text" placeholder="Enter Book Name" required name="Name" value="{{ obj.name }}">
+
+        <label for="bcode">Code</label>
+        <input type="number" placeholder="Enter Book Code" required name="Code" value="{{ obj.book_code }}">
+
+        <label for="Author">Author Name</label>
+        <input type="text" placeholder="Enter Author Name" required name="Author" value="{{ obj.author_name }}">
+
+        <label for="Date">Date</label>
+        <input type="date" required name="Date" value="{{ obj.date|date:'Y-m-d' }}">
+
+        <label for="amt">Amount</label>
+        <input type="number" placeholder="Enter Book Amount" required name="Amount" value="{{ obj.amount }}">
+
+        <label for="available_books">Available Books</label>
+        <input type="number" placeholder="Available Books" required name="available_books" value="{{ obj.available_books }}">
+
+        <label for="Image">Add Book Image</label>
+        <input type="file" required name="updatebook">
+        
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+</body>
+</html>

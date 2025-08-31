@@ -1,0 +1,54 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="{%static 'book_detail.css'%}">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="profile">
+        <img src="#" alt="Profile Image">  
+        <span>{{ user.username }}</span>  
+    </div>
+    <div class="right"> <button class="abc"><a href="{% url 'addbook' %}">Add Book</a></button></div>
+</div>
+<h2>Book Details-Admin Page</h2>
+
+<table>
+    <tr>
+        <th>Book Name</th>
+        <th>Book Code</th>
+        <th>Author Name</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Amount</th>
+        <th>Available Books</th>
+        <th>Book Image</th>
+        <th>Action</th>
+        <th>Delete</th>
+
+    </tr>
+    {% for i in obj %}
+    <tr>
+        <td>{{i.name}}</td>
+        <td>{{i.book_code}}</td>
+        <td>{{i.author_name}}</td>
+        <td>{{i.date}}</td>
+        <td>{{i.status}}</td>
+        <td>{{i.amount}}</td>
+        <td>{{i.available_books}}</td>
+
+       
+       <td>{{i.Book_img}}</td>
+        <td><img src="{{i.book_img.url}}" style="width:100px;height:100px;"></td>
+        <td><button class="btn2"><a class="edit" href="{% url 'updatebook' i.id %}">Edit </a> </button></td>
+        <td><button class="btn2"><a class="delete" href="{% url 'deletebook' i.id %}">Delete </a> </button></td>
+      
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
